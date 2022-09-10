@@ -1,3 +1,3 @@
-# @luisrojas/HooksApp
+# HooksApp
 
 hook usage project in react
