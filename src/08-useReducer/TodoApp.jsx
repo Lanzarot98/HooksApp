@@ -18,6 +18,10 @@ export const TodoApp = () => {
 
     const [ toDos, dispatch ] = useReducer( todoReducer, initialState );
 
+    const handleNewTodo = ( toDo ) => {
+        console.log( {toDo} );
+    }
+
   return (
     <>
         <h1>TodoApp: 10, <small>pendientes: 2</small></h1>
@@ -25,9 +29,11 @@ export const TodoApp = () => {
 
         <div className='row'>
             <div className='col-7'>
+                {/* TodoList */}
                 <ul className='list-group'>
                     {
                         toDos.map( (toDo)=> (
+                            // TodoItem ... (crear componente todoItem que reciba el toDo)
                             <li key={ toDo.id } className='list-group-item d-flex justify-content-between'>
                                 <span className='align-self-center'>Item 1</span>
                                 <button className='btn btn-danger'>Borrar</button>
@@ -35,11 +41,15 @@ export const TodoApp = () => {
                         ))
                     }
                 </ul>
+                {/* fin TodoList */}
             </div>
 
             <div className='col-5'>
+                    
                 <h4>Agregar TODO</h4>
                 <hr />
+                {/* TodoAdd que tiene la emisión de onNewTodo( todo )*/}
+                {/* {id: new Date()..., description:'', done: false} */}
                 <form>
                     <input 
                         type="text"
@@ -54,6 +64,7 @@ export const TodoApp = () => {
                         Agregar
                     </button>
                 </form>
+                {/* Fin TodoAdd */}
             </div>
             
         </div>
