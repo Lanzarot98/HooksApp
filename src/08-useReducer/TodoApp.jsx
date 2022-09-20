@@ -39,6 +39,12 @@ export const TodoApp = () => {
         }
         dispatch( action );
     }
+    const handleDeleteTodo = ( id ) => {
+        dispatch({
+            type: '[TODO] Remove Todo',
+            payload: id
+        });
+    }
 
   return (
     <>
@@ -47,17 +53,15 @@ export const TodoApp = () => {
 
         <div className='row'>
             <div className='col-7'>
-                <TodoList toDos={ toDos } />
+                <TodoList toDos={ toDos } onDeleteTodo={ handleDeleteTodo } />
             </div>
 
             <div className='col-5'>
                     
                 <h4>Add TODO</h4>
                 <hr />
-                {/* TodoAdd que tiene la emisión de onNewTodo( todo )*/}
-                {/* {id: new Date()..., description:'', done: false} */}
                 <TodoAdd onNewTodo={ handleNewTodo } />
-                {/* Fin TodoAdd */}
+                
             </div>
             
         </div>

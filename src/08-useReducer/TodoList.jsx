@@ -1,7 +1,7 @@
 import React from 'react'
 import { TodoItem } from './TodoItem'
 
-export const TodoList = ({toDos = []}) => {
+export const TodoList = ({ toDos = [], onDeleteTodo }) => {
 
   return (
     
@@ -11,6 +11,7 @@ export const TodoList = ({toDos = []}) => {
                 <TodoItem
                     key={ toDo.id }
                     toDo = { toDo }
+                    onDeleteTodo={ onDeleteTodo }
                 />
             ))
         }
