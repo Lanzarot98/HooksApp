@@ -21,7 +21,13 @@ export const TodoApp = () => {
     const [ toDos, dispatch ] = useReducer( todoReducer, initialState );
 
     const handleNewTodo = ( toDo ) => {
-        console.log( toDo );
+        // aquí es el todo que quiero insertar, es decir
+        // el payload que quiero enviar a mi reducer
+        const action = {
+            type: '[TODO] Add ToDo',
+            payload: toDo
+        }
+        dispatch( action );
     }
 
   return (
