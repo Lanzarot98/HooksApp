@@ -27,7 +27,7 @@ export const TodoAdd = ({ onNewTodo }) => {
         <form onSubmit={onFormSubmit} >
             <input 
                 type="text"
-                placeholder="¿Qué hay que hacer?"
+                placeholder="What is there to do?"
                 className="form-control"
                 name="description"
                 onChange={ onInputChange }
@@ -38,7 +38,7 @@ export const TodoAdd = ({ onNewTodo }) => {
                 type="submit"
                 className='btn btn-outline-primary mt-1'
             >
-                Agregar
+                add task
             </button>
         </form>
     </>

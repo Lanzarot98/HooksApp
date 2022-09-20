@@ -1,24 +1,34 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { TodoAdd } from './TodoAdd';
 import { TodoList } from './TodoList';
 import { todoReducer } from './todoReducer';
 
 const initialState = [
-    {
-        id: new Date().getTime(), // para generar un id temporal
-        description: 'Recolectar la piedra del alma',
-        done: false,
-    },
-    {
-        id: new Date().getTime()*3,
-        description: 'Recolectar la piedra de poder',
-        done: false,
-    },
+    // {
+    //     id: new Date().getTime(), // para generar un id temporal
+    //     description: 'Recolectar la piedra del alma',
+    //     done: false,
+    // },
+    // {
+    //     id: new Date().getTime()*3,
+    //     description: 'Recolectar la piedra de poder',
+    //     done: false,
+    // },
 ]
+
+const init = () => {
+    // si es null el JSON.parse, hace la evaluación del array vacío y lo retorna
+    // y si lo primero tiene valor, entonces eso es lo que se retorna
+    return JSON.parse( localStorage.getItem('toDos')) || [];
+}
 
 export const TodoApp = () => {
 
-    const [ toDos, dispatch ] = useReducer( todoReducer, initialState );
+    const [ toDos, dispatch ] = useReducer( todoReducer, initialState, init );
+
+    useEffect (() => {
+        localStorage.setItem('toDos', JSON.stringify( toDos ));
+    }, [toDos])
 
     const handleNewTodo = ( toDo ) => {
         // aquí es el todo que quiero insertar, es decir
@@ -32,7 +42,7 @@ export const TodoApp = () => {
 
   return (
     <>
-        <h1>TodoApp: 10, <small>pendientes: 2</small></h1>
+        <h1>TodoApp: 10, <small>pending: 2</small></h1>
         <hr />
 
         <div className='row'>
@@ -42,7 +52,7 @@ export const TodoApp = () => {
 
             <div className='col-5'>
                     
-                <h4>Agregar TODO</h4>
+                <h4>Add TODO</h4>
                 <hr />
                 {/* TodoAdd que tiene la emisión de onNewTodo( todo )*/}
                 {/* {id: new Date()..., description:'', done: false} */}
