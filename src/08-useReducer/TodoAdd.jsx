@@ -1,35 +1,37 @@
-import React from 'react'
-import { useState } from 'react';
+import { useForm } from '../hooks/useForm';
 
-export const TodoAdd = ({onNewTodo}) => {
+export const TodoAdd = ({ onNewTodo }) => {
 
-    const [inputToDo, setInputToDo] = useState('')
-    
-    const ToDo = {
-        id: new Date().getTime(),
-        description: inputToDo,
-        done: false,
-    }
+    const { description, onInputChange, onResetForm } = useForm({
+        description: ''
 
-    const onSubmit = (event) => {
+    })
+
+    const onFormSubmit = (event) => {
         event.preventDefault();
-        onNewTodo(ToDo);
-    }
+        if(description.length <= 1) return;
 
-    const onInputChange = ({target}) => {
-        setInputToDo(target.value);
+        const NewTodo = {
+            id: new Date().getTime(),
+            description,
+            done: false,
+        }
+
+        onNewTodo(NewTodo)
+        onResetForm(); // para que se borre la caja de texto cuando hago submit
     }
 
   return (
     <>
     {/* {id: new Date()..., description:'', done: false} */}
-        <form onSubmit={onSubmit} >
+        <form onSubmit={onFormSubmit} >
             <input 
                 type="text"
                 placeholder="¿Qué hay que hacer?"
                 className="form-control"
-                onChange={onInputChange}
-                
+                name="description"
+                onChange={ onInputChange }
+                value={ description }
             />
 
             <button 

@@ -31,9 +31,7 @@ export const TodoApp = () => {
 
         <div className='row'>
             <div className='col-7'>
-                {/* TodoList */}
                 <TodoList toDos={ toDos } />
-                {/* fin TodoList */}
             </div>
 
             <div className='col-5'>
@@ -42,7 +40,7 @@ export const TodoApp = () => {
                 <hr />
                 {/* TodoAdd que tiene la emisión de onNewTodo( todo )*/}
                 {/* {id: new Date()..., description:'', done: false} */}
-                <TodoAdd onNewTodo={ (toDo) => handleNewTodo(toDo) } />
+                <TodoAdd onNewTodo={ handleNewTodo } />
                 {/* Fin TodoAdd */}
             </div>
             

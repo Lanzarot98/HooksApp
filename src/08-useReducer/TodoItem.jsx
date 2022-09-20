@@ -1,13 +1,10 @@
 import React from 'react'
 
-export const TodoItem = ({id, description, done}) => {
+export const TodoItem = ({ toDo }) => {
   return (
-        // TodoItem ... (crear componente todoItem que reciba el toDo)
-    
-        <li key={ id } className='list-group-item d-flex justify-content-between'>
-            <span className='align-self-center'>{description}</span>
-            <button className='btn btn-danger'>Borrar</button>
-        </li>
-    
+    <li className='list-group-item d-flex justify-content-between'>
+        <span className='align-self-center'>{ toDo.description }</span>
+        <button className='btn btn-danger'>Borrar</button>
+    </li>
   )
 }
